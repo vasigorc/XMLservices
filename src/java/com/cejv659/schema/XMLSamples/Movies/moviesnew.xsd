@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns="http://www.w3.org/2001/XMLSchema"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:mh="http://localhost:8080/Rimma/XMLXSLTXPath"
+           targetNamespace="http://localhost:8080/Rimma/XMLXSLTXPath"
+           elementFormDefault="qualified">
+    <!--definition of simple elements-->
+    <xs:element name="title" type="xs:string" />
+    <xs:element name="nopasses" type="xs:boolean"/>
+    <xs:element name="duration" type="xs:duration"/>
+    <xs:element name="genre" type="xs:string"/>
+    <xs:element name="rank">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="G"></xs:enumeration>
+                <xs:enumeration value="13+"></xs:enumeration>
+                <xs:enumeration value="unrated"></xs:enumeration>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="showtime" type="xs:time"/>
+    <xs:element name="released" type="xs:date"/>
+    <xs:element name="actor" type="xs:string"/>
+    <xs:element name="director">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!--meaning any unicode letter(also \p{N} is for any numeric category in anay alphabet), space, appostrophe sign, dash or digits 0 to 9-->
+                <xs:pattern value="[A-Za-z0-9 ,.'-]+"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="producer">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!--meaning any unicode letter, space, appostrophe sign, dash or digits 0 to 9-->
+                <xs:pattern value="[A-Za-z0-9 ,.'-]+"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="writer">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!--meaning any unicode letter, space, appostrophe sign, dash or digits 0 to 9-->
+                <xs:pattern value="[A-Za-z0-9 ,.'-]+"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="studio">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!--meaning any unicode letter, space, appostrophe sign, dash or digits 0 to 9-->
+                <xs:pattern value="[A-Za-z0-9 ,.'-]+"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <!--definition of attributes-->
+    <!--definition of complex elements-->
+    <xs:element name="showingon">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="mh:showtime" maxOccurs="24"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="actors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="mh:actor" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="directors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="mh:director" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="producerstype">
+        <xs:sequence>
+            <xs:element ref="mh:producer" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>    
+    
+    <xs:element name="producers" type="mh:producerstype"/>
+    
+    <xs:complexType name="writerstype">
+        <xs:sequence>
+            <xs:element ref="mh:writer" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="writers" type="mh:writerstype"/>
+    
+    <xs:complexType name="studiostype">
+        <xs:sequence>
+            <xs:element ref="mh:studio" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>   
+    
+    <xs:element name="studios" type="mh:studiostype"/>
+    
+    <xs:group name="moviegroup">
+        <xs:sequence>
+            <xs:element ref="mh:title"/>
+            <xs:element ref="mh:nopasses" minOccurs="0"/>
+            <xs:element ref="mh:duration" minOccurs="0"/>
+            <xs:element ref="mh:genre" minOccurs="0"/>
+            <xs:element ref="mh:rank" minOccurs="0"/>
+            <xs:element ref="mh:showingon"/>
+            <xs:element ref="mh:released" minOccurs="0"/>
+            <xs:element ref="mh:actors"/>
+            <xs:element ref="mh:directors"/>
+            <xs:element ref="mh:producers"/>
+            <xs:element ref="mh:writers"/>
+            <xs:element ref="mh:studios"/>
+        </xs:sequence>
+    </xs:group>
+    
+    <xs:complexType name="movietype">
+        <xs:group ref="mh:moviegroup"></xs:group>
+    </xs:complexType>
+    
+    <xs:element name="movie" type="mh:movietype"/>
+    
+    <xs:complexType name="moviestype">
+        <xs:sequence>
+            <xs:element ref="mh:movie" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="movies" type="mh:moviestype"/>
+</xs:schema>
