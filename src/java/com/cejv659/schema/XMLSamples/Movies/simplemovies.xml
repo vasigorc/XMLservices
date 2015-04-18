@@ -1,37 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="movies_styles.xsl"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!--the old school below--><!--
-<!DOCTYPE movies[
-<!ELEMENT movies (movie+)>
-<!ELEMENT movie (title, nopasses?, duration, genre?, rank?, showingon, released?, actors, directors, producers, writers, studios)>
-<!ELEMENT title (#PCDATA)>
-<!ELEMENT nopasses (#PCDATA)>
-<!ELEMENT duration (#PCDATA)>
-<!ELEMENT genre (#PCDATA)>
-<!ELEMENT rank (#PCDATA)>
-<!ELEMENT showingon (showtime*)>
-<!ELEMENT showtime (#PCDATA)>
-<!ELEMENT released (#PCDATA)>
-<!ELEMENT actors (actor*)>
-<!ELEMENT actor (#PCDATA)>
-<!ELEMENT directors (director*)>
-<!ELEMENT director (#PCDATA)>
-<!ELEMENT producers (producer*)>
-<!ELEMENT producer (#PCDATA)>
-<!ELEMENT writers (writer*)>
-<!ELEMENT writer (#PCDATA)>
-<!ELEMENT studios (studio*)>
-<!ELEMENT studio (#PCDATA)>
-]>-->
-<movies xmlns="http://localhost:8080/Rimma/XMLXSLTXPath"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://localhost:8080/Rimma/XMLXSLTXPath
-                    moviesnew.xsd">
+<movies>
     <movie>
         <title>The Break-Up</title>
         <nopasses>false</nopasses>

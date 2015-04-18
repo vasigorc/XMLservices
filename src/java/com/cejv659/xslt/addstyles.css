@@ -1,0 +1,18 @@
+/* 
+    Document   : addstyles
+    Created on : 18 avr. 2015, 12:20:55
+    Author     : vasigorc
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.biggerCopy{
+    font-size: 1.875em;
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
